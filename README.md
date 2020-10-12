@@ -54,8 +54,8 @@ The script checks the current page URL (via `window.location.href`) and referrin
 
 Four general sources are recognized:
 
-1. A Custom visit (page URL has one of the valid `utm_source` parameters)
-2. Organic visit (`document.referrer` exists, but isn't the same as host specified in `track()`, i.e. the user came to our site via a link on another site)
+1. A Custom visit (page URL has `utm_source` parameter with one of the recognized values)
+2. Organic visit (`document.referrer` is not blank and differs from the host specified in `track()`, i.e. the user came to our site via a natural link on another site)
 3. Direct visit (`document.referrer` is blank, i.e. the user typed in the address to access the site)
 4. Internal visit (`document.referrer` host is the same as the host being tracked, i.e. the user is browsing the site)
 
@@ -71,3 +71,8 @@ If, for any reason, you need to remove the tag from local storage, call `VF_Trac
 
 You can run very basic tests by calling `VF_Track_Test()` function in js/tests.js file, after including the main script.
 These tests do not use any framework, they just validate the tracking behaves as expected for key scenarios.
+
+## More ##
+
+A list of custom sources we recognize based on UTM source:
+https://docs.google.com/spreadsheets/d/1ET8DEcBOOAYRFXNWSeNTMwkaYZwUQIPc9G3nwCRDnmQ/edit#gid=224900035
