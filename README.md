@@ -60,7 +60,7 @@ Four general sources are recognized:
 Only first 3 sources are captured and stored as a `vf_track` tag in local storage, that can be read at any time via `VF_Track.getTag()`
 
 
+### Testing ###
 
-### Who do I talk to? ###
-
-* Peter Vukovic
+You can run very basic tests by calling `VF_Track_Test()` function in js/tests.js file, after including the main script.
+These tests do not use any framework, they just validate the tracking behaves as expected for key scenarios.
