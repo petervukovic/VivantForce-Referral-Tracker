@@ -40,10 +40,10 @@ This will give you a JSON based result in this format:
 
 | name | description |
 |--|--|
-| source | A source of the visit, to be used as `Referral_Source__c` on Sales Orders in Salesforce. Can be Website, Paid Search, Paid Display, Organic Search, Organic Social or Paid Social 
-|subsource| A subsource of the visit, to be used as `Referral_Subsource__c`  on Sales Orders in Salesforce.
-|campaignId| A Salesforce Campaign Id, to be used as `Referral_Campaign__c` on Sales Orders in Salesforce. Read from `utm_campaign_id` query parameter, if present. 
-|partnerId| A Salesforce Partner account Id, to be used as `Referral_Partner__c` on Sales Orders in Salesforce. Read from `utm_partner_id` query parameter, if present.
+| source | A general source of the visit, to be used as `Referral_Source__c` on Sales Orders in Salesforce. For example, `Website`, `Paid Search` and `Organic Search` and `Organic Social` are some possible values.
+|subsource| A subsource of the visit, to be used as `Referral_Subsource__c` on Sales Orders in Salesforce. This is typically the referring site such as , `Google` or `Facebook`, but can also be `Other/None` if not recognized.
+|campaignId| A Salesforce Campaign Id, to be used as `Referral_Campaign__c` on Sales Orders in Salesforce. Equals `utm_campaign_id` query parameter, if present. 
+|partnerId| A Salesforce Partner account Id, to be used as `Referral_Partner__c` on Sales Orders in Salesforce. Equals `utm_partner_id` query parameter, if present.
 |referrer| The referring site, i.e same as reading `document.referrer`.
 |referrerHost| Referring site host.
 
