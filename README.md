@@ -58,7 +58,7 @@ Four general sources are recognized:
 2. Organic visit (`document.referrer` is not blank and differs from the host specified in `track()`, i.e. the user came to our site via a natural link on another site)
 3. Direct visit (`document.referrer` is blank, i.e. the user typed in the address to access the site)
 4. Internal visit (`document.referrer` host is the same as the host being tracked, i.e. the user is browsing the site)
-
+    
 Custom and Organic visits are further analyzed to determine the proper `source` and `subsource` based on mappings in `CustomSource` and `OrganicSource` classes.
 Direct visits are simply reported as source='Website' and subsource='Other/None'.
 Internal visits are recognized but not tagged, they are simply skipped (as we are not interested in internal sources).
