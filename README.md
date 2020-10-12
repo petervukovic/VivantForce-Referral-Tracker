@@ -1,7 +1,7 @@
 
 # About #
 
-**vftrack.js** is a script we use to track referral sources and map them to acceptable values for Referral Source and Referral Subsource scripts. 
+**vftrack.js** is a script we use to track the websites users are visiting us from (i.e. referrals) and stored them with Salesforce orders. This allows us to run reports on revenue per referral source and analyze how different referrals impact our online sales performance.
 
 This repository contains a sample website you can run locally to test the script, but all you need to include is a `vftrack.js` file.
 
@@ -40,12 +40,12 @@ This will give you a JSON based result in this format:
 
 | name | description |
 |--|--|
-| source | A generally recognized category of source. Can be Website, Paid Search, Paid Display, Organic Search, Organic Social or Paid Social  |
-|subsource| A specific subsource, for example: Google
-|campaignId| A salesforce campaign Id. Read from `utm_campaign_id` query parameter, if present. 
-|partnerId| A salesforce partner account Id. ead from `utm_partner_id` query parameter, if present.
-|referrer| The referring site, i.e same as reading `document.referrer`
-|referrerHost| Referring site host
+| source | A source of the visit, to be used as `Referral_Source__c` on Sales Orders in Salesforce. Can be Website, Paid Search, Paid Display, Organic Search, Organic Social or Paid Social 
+|subsource| A subsource of the visit, to be used as `Referral_Subsource__c`  on Sales Orders in Salesforce.
+|campaignId| A Salesforce Campaign Id, to be used as `Referral_Campaign__c` on Sales Orders in Salesforce. Read from `utm_campaign_id` query parameter, if present. 
+|partnerId| A Salesforce Partner account Id, to be used as `Referral_Partner__c` on Sales Orders in Salesforce. Read from `utm_partner_id` query parameter, if present.
+|referrer| The referring site, i.e same as reading `document.referrer`.
+|referrerHost| Referring site host.
 
 
 ## How it works ##
@@ -54,13 +54,18 @@ The script checks the current page URL (via `window.location.href`) and referrin
 
 Four general sources are recognized:
 
-1. A custom-tagged visit (`window.location.href` has one of the recognized  `utm_source` parameters )
-2. Direct visit (`document.referrer` is blank, i.e. the user typed in the address to access the site)
-3. Organic visit (`document.referrer` exists, but isn't the same as host specified in `track()`, i.e. the user came to our site via a link on another site)
-4. Internal visit (`document.referrer` exists and has the same host as specified in `track()`, which means the user is browsing the site)
+1. A Custom visit (page URL has one of the valid `utm_source` parameters)
+2. Organic visit (`document.referrer` exists, but isn't the same as host specified in `track()`, i.e. the user came to our site via a link on another site)
+3. Direct visit (`document.referrer` is blank, i.e. the user typed in the address to access the site)
+4. Internal visit (`document.referrer` host is the same as the host being tracked, i.e. the user is browsing the site)
 
-Only first 3 sources are captured and stored as a `vf_track` tag in local storage, that can be read at any time via `VF_Track.getTag()`
+Custom and Organic visits are further analyzed to determine the proper `source` and `subsource` based on mappings in `CustomSource` and `OrganicSource` classes.
+Direct visits are simply reported as source='Website' and subsource='Other/None'.
+Internal visits are recognized but not tagged, they are simply skipped (as we are not interested in internal sources).
 
+## Removing the tag ##
+
+If, for any reason, you need to remove the tag from local storage, call `VF_Track.removeTag()`
 
 ### Testing ###
 
