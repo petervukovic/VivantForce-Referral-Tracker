@@ -1,29 +1,20 @@
-# README #
+# About #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+A script we use to track referral sources and map them to acceptable values for Referral Source and Referral Subsource scripts. 
 
-### What is this repository for? ###
+## Usage ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Add this script to the head tag:
 
-### How do I get set up? ###
+    <script src="/path/to/vftrack.js"></script>
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Then initialize the tracker by sending a hostname of the website you are tracking to to the track() method:
 
-### Contribution guidelines ###
+    <script>VF_Track.log().track('dev.vivant.eco')</script>
 
-* Writing tests
-* Code review
-* Other guidelines
+Tip: omit the log() method if you want to prevent logging to console, i.e. just call VF_Track.track(hostname)
+
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Peter Vukovic
