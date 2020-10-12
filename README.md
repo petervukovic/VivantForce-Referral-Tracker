@@ -3,6 +3,8 @@
 
 **vftrack.js** is a script we use to track referral sources and map them to acceptable values for Referral Source and Referral Subsource scripts. 
 
+This repository contains a sample website you can run locally to test the script, but all you need to include is a `vftrack.js` file.
+
 ## Usage ##
 
 
@@ -10,7 +12,7 @@
 
 Add this script to the head tag, replacing the `www.mydomain.com` with the actual hostname of the domain you are tracking:
 
-    <script src="/path/to/vftrack.js"></script>    
+    <script src="/js/vftrack.js"></script>    
     <script>VF_Track.log().track('www.mydomain.com')</script>
 
 **Tip #1:** omit the `log()` method if you want to prevent logging to console, i.e. just call `VF_Track.track(hostname)`
