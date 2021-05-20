@@ -376,7 +376,7 @@
   class TrackingParams {
     constructor(hostname, referrer, currentURL) {
       if (referrer === undefined) referrer = document.referrer;
-      if (currentURL === undefined) currentURL = window.location.href;
+      if (currentURL === undefined) currentURL = decodeURIComponent(window.location.href);
 
       if (!hostMatches(hostname, currentURL))
         throw (
