@@ -297,6 +297,15 @@ Cookie can be read using VF_Track.getTag() method.
     },
   };
 
+//polyfill for older browsers
+  function fromEntries(entries) {
+    const res = {};
+    for (let i = 0; i < entries.length; i++) res[entries[i][0]] = entries[i][1];
+    return res;
+  }
+
+  if (!Object.fromEntries) Object.fromEntries = fromEntries;
+
   /* 
   Minified psl.js domain parsing library used to identify top level domains.
   See: https://github.com/lupomontero/psl 
